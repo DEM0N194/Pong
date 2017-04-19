@@ -5,11 +5,11 @@
 class Projectile
 {
 public:
-	Projectile(int X);
-	int GetX(){ return x; }
+	Projectile(float X);
+	int GetX(){ return static_cast<int>(x); }
 	int GetY(){ return y; }
 	bool IsActive(){ return bActive; }
-	void Shoot(int XV, int Y);
+	void Shoot(float XV, int Y);
 	void Update();
 	void StopBullet();
 	void Collision(Paddle *paddle);
@@ -20,8 +20,8 @@ public:
 private:
 
 	bool bActive = false;
-	const int StartPosX;
-	int x;
+	const float StartPosX;
+	float x;
 	int y;
-	int xv;
+	float xv;
 };

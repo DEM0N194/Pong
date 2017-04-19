@@ -5,7 +5,7 @@
 
 Ball::Ball()
 {
-	srand(time(NULL));
+	srand(static_cast<int>(time(NULL)));
 
 	x = Graphics::ScreenWidth / 2;
 	y = Graphics::ScreenHeight / 2;
@@ -49,10 +49,10 @@ void Ball::RandDirection()
 	{
 		xv = -4;
 	}
-	yv = rand() % 9 - 4;
+	yv = static_cast<float>(rand() % 9 - 4);
 }
 
-void Ball::Shot(int XV)
+void Ball::Shot(float XV)
 {
 	if (xv < 0 && XV > 0)
 	{
@@ -80,7 +80,7 @@ void Ball::Collision(Paddle * paddle)
 	{
 		if (x - width / 2 < paddle->GetX() + Paddle::width && y + height / 2 >= paddle->GetY() - paddle->GetHeight()/2 && y - height / 2 <= paddle->GetY() + paddle->GetHeight()/2)
 		{
-			x = paddle->GetX() + Paddle::width + width / 2;
+			x = static_cast<float>(paddle->GetX() + Paddle::width + width / 2);
 			xv = -xv;
 			if (paddle->GetMovement() < 0)
 			{
@@ -96,7 +96,7 @@ void Ball::Collision(Paddle * paddle)
 	{
 		if (x + width / 2> paddle->GetX() && y + height / 2 >= paddle->GetY() - paddle->GetHeight()/2 && y - height / 2 <= paddle->GetY() + paddle->GetHeight()/2)
 		{
-			x = paddle->GetX() - width / 2;
+			x = static_cast<float>(paddle->GetX() - width / 2);
 			xv = -xv;
 			if (paddle->GetMovement() < 0)
 			{

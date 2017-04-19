@@ -127,7 +127,7 @@ void Game::ComposeFrame()
 
 void Game::DrawPaddle(Paddle *paddle)
 {
-	for (int i = paddle->GetY() - paddle->GetHeight()/2; i <= paddle->GetY() + paddle->GetHeight()/2; i++)
+	for (int i = paddle->GetY() - static_cast<int>(paddle->GetHeight()/2); i <= paddle->GetY() + static_cast<int>(paddle->GetHeight()/2); i++)
 	{
 		for (int j = paddle->GetX(); j < paddle->GetX() + Paddle::width; j++)
 		{

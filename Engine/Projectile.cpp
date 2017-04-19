@@ -1,7 +1,7 @@
 #include "Projectile.h"
 #include "Graphics.h"
 
-Projectile::Projectile(int X)
+Projectile::Projectile(float X)
 :StartPosX(X)
 {
 	x = X;
@@ -36,7 +36,7 @@ void Projectile::Collision(Ball * ball)
 	}
 }
 
-void Projectile::Shoot(int XV, int Y)
+void Projectile::Shoot(float XV, int Y)
 {
 	bActive = true;
 	x = StartPosX;
