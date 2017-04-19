@@ -10,10 +10,10 @@ Ball::Ball()
 	y = Graphics::ScreenHeight / 2;
 }
 
-int Ball::Update()
+int Ball::Update(float dt)
 {
-	x += xv;
-	y += yv;
+	x += xv * dt;
+	y += yv * dt;
 	
 	if (y - height / 2 < 0)
 	{
@@ -42,19 +42,19 @@ void Ball::RandDirection()
 {
 	if (binDist(rng))
 	{
-		xv = 4;
+		xv = 4 * baseSpeed;
 	}
 	else
 	{
-		xv = -4;
+		xv = -4 * baseSpeed;
 	}
 	if (binDist(rng))
 	{
-		yv = yvDist(rng);
+		yv = yvDist(rng) * baseSpeed;
 	}
 	else
 	{
-		yv = -yvDist(rng);
+		yv = -yvDist(rng) * baseSpeed;
 	}
 }
 
@@ -63,20 +63,20 @@ void Ball::Shot(float XV)
 	if (xv < 0 && XV > 0)
 	{
 		xv = -xv;
-		xv += 2;
+		xv += 2 * baseSpeed;
 	}
 	else if ( xv > 0 && XV < 0)
 	{ 
 		xv = -xv;
-		xv -= 2;
+		xv -= 2 * baseSpeed;
 	}
 	else if (xv < 0 && XV < 0)
 	{
-		xv -= 2;
+		xv -= 2 * baseSpeed;
 	}
 	else
 	{
-		xv += 2;
+		xv += 2 * baseSpeed;
 	}
 }
 

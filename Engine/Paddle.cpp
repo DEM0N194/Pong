@@ -7,16 +7,16 @@ Paddle::Paddle(int X)
 	Reset();
 }
 
-void Paddle::MoveUp()
+void Paddle::MoveUp(float dt)
 {
 	yOld = y;
-	y -= 7;
+	y -= 7 * 60 * dt;
 }
 
-void Paddle::MoveDown()
+void Paddle::MoveDown(float dt)
 {
 	yOld = y;
-	y += 7;
+	y += 7 * 60 * dt;
 }
 
 void Paddle::Update()

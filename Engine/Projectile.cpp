@@ -44,9 +44,9 @@ void Projectile::Shoot(float XV, int Y)
 	y = Y;
 }
 
-void Projectile::Update()
+void Projectile::Update(float dt)
 {
-	x += xv;
+	x += xv * dt;
 	if (x < 0 || x > Graphics::ScreenWidth)
 	{
 		StopBullet();

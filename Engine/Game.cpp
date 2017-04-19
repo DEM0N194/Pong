@@ -25,16 +25,17 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	float dt = ft.Mark();
 	if (isPlaying)
 	{
 		//! ----------player1 update model----------
 		if (wnd.kbd.KeyIsPressed(0x57))
 		{
-			player1.MoveUp();
+			player1.MoveUp(dt);
 		}
 		if (wnd.kbd.KeyIsPressed(0x53))
 		{
-			player1.MoveDown();
+			player1.MoveDown(dt);
 
 		}
 		player1.Update();
@@ -42,11 +43,11 @@ void Game::UpdateModel()
 		//! ----------player2 update model----------
 		if (wnd.kbd.KeyIsPressed(VK_UP))
 		{
-			player2.MoveUp();
+			player2.MoveUp(dt);
 		}
 		if (wnd.kbd.KeyIsPressed(VK_DOWN))
 		{
-			player2.MoveDown();
+			player2.MoveDown(dt);
 		}
 		player2.Update();
 
@@ -55,12 +56,12 @@ void Game::UpdateModel()
 		{
 			if (!bullet1.IsActive())
 			{
-				bullet1.Shoot(10, player1.GetY());
+				bullet1.Shoot(10 * 60, player1.GetY());
 			}
 		}
 		if (bullet1.IsActive())
 		{
-			bullet1.Update();
+			bullet1.Update(dt);
 			bullet1.Collision(&player2);
 			bullet1.Collision(&ball);
 		}
@@ -70,12 +71,12 @@ void Game::UpdateModel()
 		{
 			if (!bullet2.IsActive())
 			{
-				bullet2.Shoot(-10, player2.GetY());
+				bullet2.Shoot(-10 * 60, player2.GetY());
 			}
 		}
 		if (bullet2.IsActive())
 		{
-			bullet2.Update();
+			bullet2.Update(dt);
 			bullet2.Collision(&player1);
 			bullet2.Collision(&ball);
 		}
@@ -95,7 +96,7 @@ void Game::UpdateModel()
 		//! ----------ball update model----------
 		ball.Collision(&player1);
 		ball.Collision(&player2);
-		if (ball.Update())
+		if (ball.Update(dt))
 		{
 			isPlaying = false;
 			player1.Reset();

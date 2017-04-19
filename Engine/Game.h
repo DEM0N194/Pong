@@ -26,6 +26,7 @@
 #include "Paddle.h"
 #include "Ball.h"
 #include "Projectile.h"
+#include "FrameTimer.h"
 
 class Game
 {
@@ -53,6 +54,7 @@ private:
 	Projectile bullet1;
 	Projectile bullet2;
 	Ball ball;
+	FrameTimer ft;
 	bool isPlaying = false;
 	/********************************/
 };

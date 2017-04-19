@@ -10,7 +10,7 @@ public:
 	int GetY(){ return y; }
 	bool IsActive(){ return bActive; }
 	void Shoot(float XV, int Y);
-	void Update();
+	void Update(float dt);
 	void StopBullet();
 	void Collision(Paddle *paddle);
 	void Collision(Ball *ball);
