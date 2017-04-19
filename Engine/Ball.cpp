@@ -1,12 +1,11 @@
 #include "Ball.h"
 #include "Graphics.h"
-#include <cstdlib>
-#include <ctime>
 
 Ball::Ball()
+	: rng(rd())
+	, binDist(0, 1)
+	, yvDist(1.0f,4.0f)
 {
-	srand(static_cast<int>(time(NULL)));
-
 	x = Graphics::ScreenWidth / 2;
 	y = Graphics::ScreenHeight / 2;
 }
@@ -41,7 +40,7 @@ int Ball::Update()
 
 void Ball::RandDirection()
 {
-	if (rand() % 2)
+	if (binDist(rng))
 	{
 		xv = 4;
 	}
@@ -49,7 +48,14 @@ void Ball::RandDirection()
 	{
 		xv = -4;
 	}
-	yv = static_cast<float>(rand() % 9 - 4);
+	if (binDist(rng))
+	{
+		yv = yvDist(rng);
+	}
+	else
+	{
+		yv = -yvDist(rng);
+	}
 }
 
 void Ball::Shot(float XV)

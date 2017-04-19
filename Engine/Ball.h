@@ -1,5 +1,6 @@
 #pragma once
 #include "Paddle.h"
+#include <random>
 
 class Ball
 {
@@ -19,4 +20,9 @@ private:
 	float y;
 	float xv;
 	float yv;
+
+	std::random_device rd;
+	std::mt19937 rng;
+	std::uniform_int_distribution<int> binDist;
+	std::uniform_real_distribution<float> yvDist;
 };

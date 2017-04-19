@@ -11,7 +11,7 @@ public:
 	int GetY(){ return static_cast<int>(y); }
 	int GetX(){ return x; }
 	int GetMovement(){ return movement; }
-	float GetHeight(){ return height; }
+	int GetHeight(){ return static_cast<int>(height); }
 	void Reset();
 	void Shrink();
 private:
