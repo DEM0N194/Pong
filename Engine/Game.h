@@ -27,6 +27,7 @@
 #include "Ball.h"
 #include "Projectile.h"
 #include "FrameTimer.h"
+#include "Counter.h"
 
 class Game
 {
@@ -55,6 +56,8 @@ private:
 	Projectile bullet2;
 	Ball ball;
 	FrameTimer ft;
+	Counter p1score;
+	Counter p2score;
 	bool isPlaying = false;
 	/********************************/
 };

@@ -27,11 +27,17 @@ int Ball::Update(float dt)
 	}
 
 
-	if (x - width / 2 < 0 || x + width / 2 > Graphics::ScreenWidth)
+	if (x - width / 2 < 0)
 	{
 		x = Graphics::ScreenWidth / 2;
 		y = Graphics::ScreenHeight / 2;
-		return 1;
+		return 2; //player 2 scored
+	}
+	if (x + width / 2 > Graphics::ScreenWidth)
+	{
+		x = Graphics::ScreenWidth / 2;
+		y = Graphics::ScreenHeight / 2;
+		return 1; // player 1 scored
 	}
 	
 	

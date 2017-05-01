@@ -13,6 +13,12 @@ Game::Game( MainWindow& wnd )
 ,bullet1(10)
 ,bullet2(gfx.ScreenWidth - Paddle::width - 10)
 {
+	p1score.SetPostion(gfx.ScreenWidth/2 - 50, 10);
+	p1score.AlignMiddle();
+	p1score.SetNumOf0(1);
+	p2score.SetPostion(gfx.ScreenWidth/2 + 50, 10);
+	p2score.AlignMiddle();
+	p2score.SetNumOf0(1);
 }
 
 void Game::Go()
@@ -96,13 +102,24 @@ void Game::UpdateModel()
 		//! ----------ball update model----------
 		ball.Collision(&player1);
 		ball.Collision(&player2);
-		if (ball.Update(dt))
+		switch (ball.Update(dt))
 		{
-			isPlaying = false;
-			player1.Reset();
-			player2.Reset();
-			bullet1.StopBullet();
-			bullet2.StopBullet();
+			case 1:
+				p1score++;
+				isPlaying = false;
+				player1.Reset();
+				player2.Reset();
+				bullet1.StopBullet();
+				bullet2.StopBullet();
+				break;
+			case 2:
+				p2score++;
+				isPlaying = false;
+				player1.Reset();
+				player2.Reset();
+				bullet1.StopBullet();
+				bullet2.StopBullet();
+				break;
 		}
 	}
 	else
@@ -124,6 +141,10 @@ void Game::ComposeFrame()
 
 	if (bullet1.IsActive()) DrawBullet(&bullet1);
 	if (bullet2.IsActive()) DrawBullet(&bullet2);
+
+	p1score.Draw(gfx);
+	p2score.Draw(gfx);
+	gfx.chDash(gfx.ScreenWidth/2-10, 15, Colors::White);
 }
 
 void Game::DrawPaddle(Paddle *paddle)
